@@ -4,7 +4,6 @@ from PIL import Image, ImageTk
 
 # 設定window
 window = Tk()
-window.resizable(0, 0)
 window.configure(background = "black")
 window.attributes("-fullscreen", True)
 window.attributes("-topmost", True)
