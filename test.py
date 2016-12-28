@@ -1,4 +1,4 @@
-import pygame
+from subprocess import call
 from tkinter import *
 
 # 設定window
@@ -9,36 +9,38 @@ window.attributes("-fullscreen", True)
 window.attributes("-topmost", True)
 window.focus_force()
 
+# 顯示起始圖片(第一張圖片)
+photo = PhotoImage(file="balloon(01).gif")
+label = Label(window, image=photo)
+label.config(width=500)
+label.config(height=500)
+label.pack()
+
 # 播放影片
+def play_video():
+  call(["omxplayer", "-o", "local", "qqbz.mp4"])
 
+# 設定接到訊號時的方法
+index = 2
+def switch_image(e):
+  global index
 
-## 顯示圖片，起始設第一張圖片
-#photo = PhotoImage(file="balloon(01).gif")
-#label = Label(window, image=photo)
-#label.config(width=500)
-#label.config(height=500)
-#label.pack()
+  if index < 16:
+    if index < 10:
+      fileName = "balloon(" + "0" + str(index) + ").gif"
+    elif index >= 10 and index < 16:
+      fileName = "balloon(" + str(index) + ").gif"
 
-## 設定press button時的事件
-#index = 2
-#def press(e):
-  #global index
+    newPhoto = PhotoImage(file=fileName)
+    label.config(image = newPhoto)
+    label.image = newPhoto
 
-  #if index < 16:
-    #if index < 10:
-      #fileName = "balloon(" + "0" + str(index) + ").gif"
-    #elif index >= 10 and index < 16:
-      #fileName = "balloon(" + str(index) + ").gif"
+    index += 1
+  else:
+    play_video()
+    index = 2
 
-    #newPhoto = PhotoImage(file=fileName)
-    #label.config(image = newPhoto)
-    #label.image = newPhoto
-
-    #index += 1
-  #else:
-    #print("play video")
-
-## 設定press事件
-#window.bind("<KeyPress>", press)
+# 設定接到訊號時的方法
+window.bind("<KeyPress>", switch_image)
 
 window.mainloop()
