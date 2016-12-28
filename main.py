@@ -26,11 +26,7 @@ def switch_image(e):
   global index
 
   if index < 16:
-    if index < 10:
-      fileName = "balloon(" + "0" + str(index) + ").gif"
-    elif index >= 10 and index < 16:
-      fileName = "balloon(" + str(index) + ").gif"
-
+    fileName = "balloon(" + str(index) + ").gif"
     newPhoto = PhotoImage(file=fileName)
     label.config(image = newPhoto)
     label.image = newPhoto
