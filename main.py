@@ -10,7 +10,7 @@ window.attributes("-topmost", True)
 window.focus_force()
 
 # 顯示起始圖片(第一張圖片)
-photo = PhotoImage(file="balloon(01).gif")
+photo = PhotoImage(file="balloon(1).gif")
 label = Label(window, image=photo)
 label.config(width=500)
 label.config(height=500)
