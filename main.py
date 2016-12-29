@@ -14,6 +14,7 @@ window.update()    # Make sure window will render at this time
 raw_image = Image.open("balloon(1).gif")
 target_image = ImageTk.PhotoImage(raw_image)
 label = Label(window, image=target_image)
+label.config(borderwidth = 0)
 ratio = min( window.winfo_width() / raw_image.size[0], window.winfo_height() / raw_image.size[1])
 index = 1
 
