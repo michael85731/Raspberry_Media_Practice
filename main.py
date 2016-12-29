@@ -24,7 +24,7 @@ def switch_image(e):
   if index < 16:
     fileName = "balloon(" + str(index) + ").gif"
     raw_image = Image.open(fileName)
-    raw_image = raw_image.resize( (int(raw_image.size[0] * ratio), int(raw_image.size[0] * ratio)), Image.BILINEAR )
+    raw_image = raw_image.resize( (int(raw_image.size[0] * ratio), int(raw_image.size[1] * ratio)), Image.BILINEAR )
     target_image = ImageTk.PhotoImage(raw_image)
     label.image = target_image
     label.config(image = target_image)
