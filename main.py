@@ -33,9 +33,9 @@ def switch_image(e):
 
     index += 1
   else:
-    #play_video()
-    print("check point")
+    play_video()
     index = 1
+    switch_image(0)
 
 # 播放影片
 def play_video():
