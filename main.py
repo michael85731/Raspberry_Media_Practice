@@ -2,19 +2,18 @@ from subprocess import call
 from tkinter import *
 from PIL import Image, ImageTk
 
-# 設定window
+# 設定window & label
 window = Tk()
 window.configure(background = "black")
 window.attributes("-fullscreen", True)
 window.attributes("-topmost", True)
 window.focus_force()
 window.update()    # Make sure window will render at this time
+label = Label(window)
+label.config(borderwidth = 0)
 
 # 設定起始變數
 raw_image = Image.open("balloon(1).gif")
-target_image = ImageTk.PhotoImage(raw_image)
-label = Label(window, image=target_image)
-label.config(borderwidth = 0)
 ratio = min( window.winfo_width() / raw_image.size[0], window.winfo_height() / raw_image.size[1])
 index = 1
 
