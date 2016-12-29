@@ -33,7 +33,7 @@ def switch_image(e):
 
     index += 1
   else:
-    label.forget_pack()
+    label.pack_forget()
     window.update()
     play_video()
     index = 1
