@@ -2,27 +2,31 @@ from subprocess import call
 from tkinter import *
 from PIL import Image, ImageTk
 
-# 設定window & label
+# 設定起始變數
 window = Tk()
+label = Label(window)
+raw_image = Image.open("balloon(1).gif")
+index = 1
+image_num = 16
+ratio = 0
+
+# 設定window & label
 window.configure(background = "black")
 window.attributes("-fullscreen", True)
 window.attributes("-topmost", True)
 window.focus_force()
-window.update()    # Make sure window will render at this time
-label = Label(window)
 label.config(borderwidth = 0)
+window.update()    # Make sure window will render at this time
 
-# 設定起始變數
-raw_image = Image.open("balloon(1).gif")
+# 取得正確的image scale ratio
 ratio = min( window.winfo_width() / raw_image.size[0], window.winfo_height() / raw_image.size[1])
-index = 1
 
 # 開啟起始圖片
 def switch_image(e):
   global index
   global ratio
 
-  if index < 16:
+  if index < image_num:
     fileName = "balloon(" + str(index) + ").gif"
     raw_image = Image.open(fileName)
     raw_image = raw_image.resize( (int(raw_image.size[0] * ratio), int(raw_image.size[1] * ratio)), Image.BILINEAR )
