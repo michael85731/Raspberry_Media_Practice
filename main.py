@@ -8,6 +8,7 @@ window.configure(background = "black")
 window.attributes("-fullscreen", True)
 window.attributes("-topmost", True)
 window.focus_force()
+window.update()    # Make sure window will render at this time
 
 # 設定起始變數
 raw_image = Image.open("balloon(1).gif")
@@ -31,9 +32,10 @@ def switch_image(e):
     label.pack()
 
     index += 1
-  #else:
+  else:
     #play_video()
-    #index = 2
+    print("check point")
+    index = 1
 
 # 播放影片
 def play_video():
