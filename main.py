@@ -27,7 +27,7 @@ label.config(borderwidth = 0)
 window.update()    # Make sure window will render at this time
 
 # 取得正確的image scale ratio
-ratio = min( window.winfo_width() / raw_image.size[0], window.winfo_height() / raw_image.size[1])
+ratio = max( window.winfo_width() / raw_image.size[0], window.winfo_height() / raw_image.size[1])
 
 def action():
   global index
@@ -67,8 +67,6 @@ while True:
     if button_state:
       action()
     flag = button_state
-
-  time.sleep(0.01)
 
 
 window.mainloop()
