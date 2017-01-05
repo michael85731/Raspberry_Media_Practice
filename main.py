@@ -41,7 +41,7 @@ def action():
     window.update()
     play_video()
     index = 1
-    switch_image(index)
+    action()
 
 # 開啟起始圖片
 def switch_image(index):
