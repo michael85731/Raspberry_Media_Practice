@@ -16,7 +16,7 @@ pin = 12
 
 # 設定GPIO
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(pin, GPIO.IN)
+GPIO.setup(pin, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
 
 # 設定window & label
 window.configure(background = "black")
