@@ -57,7 +57,7 @@ def play_video():
 
 switch_image() # 執行第一次
 
-while True
+while True:
   button_state = GPIO.input(pin)
 
   if flag != button_state:
