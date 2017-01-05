@@ -49,7 +49,7 @@ def switch_image():
     window.update()
     play_video()
     index = 1
-    switch_image(0)
+    switch_image()
 
 # 播放影片
 def play_video():
