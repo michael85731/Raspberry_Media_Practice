@@ -26,8 +26,8 @@ window.focus_force()
 label.config(borderwidth = 0)
 window.update()    # Make sure window will render at this time
 
-# 取得正確的image scale ratio
-ratio = max( window.winfo_width() / raw_image.size[0], window.winfo_height() / raw_image.size[1])
+# 取得等比例縮放的的image scale ratio
+ratio = min( window.winfo_width() / raw_image.size[0], window.winfo_height() / raw_image.size[1])
 
 def action():
   global index
@@ -47,7 +47,8 @@ def action():
 def switch_image(index):
   fileName = "balloon(" + str(index) + ").gif"
   raw_image = Image.open(fileName)
-  raw_image = raw_image.resize( (int(raw_image.size[0] * ratio), int(raw_image.size[1] * ratio)), Image.BILINEAR )
+  #raw_image = raw_image.resize( (int(raw_image.size[0] * ratio), int(raw_image.size[1] * ratio)), Image.BILINEAR )
+  raw_image = raw_image.resize( (window.winfo_width(), window.winfo_height()), Image.BILINEAR )
   target_image = ImageTk.PhotoImage(raw_image)
   label.image = target_image
   label.config(image = target_image)
