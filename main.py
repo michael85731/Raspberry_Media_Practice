@@ -1,3 +1,5 @@
+import time
+import RPi.GPIO as GPIO
 from subprocess import call
 from tkinter import *
 from PIL import Image, ImageTk
@@ -9,6 +11,12 @@ raw_image = Image.open("balloon(1).gif")
 index = 1
 image_num = 16
 ratio = 0
+flag = False
+pin = 12
+
+# 設定GPIO
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(pin, GPIO.IN)
 
 # 設定window & label
 window.configure(background = "black")
@@ -22,7 +30,7 @@ window.update()    # Make sure window will render at this time
 ratio = min( window.winfo_width() / raw_image.size[0], window.winfo_height() / raw_image.size[1])
 
 # 開啟起始圖片
-def switch_image(e):
+def switch_image():
   global index
   global ratio
 
@@ -47,8 +55,17 @@ def switch_image(e):
 def play_video():
   call(["omxplayer", "-o", "local", "qqbz.mp4"])
 
-window.bind("<KeyPress>", switch_image) # 設定接到訊號時的方法
+switch_image() # 執行第一次
 
-switch_image(0) # 執行第一次
+while True
+  button_state = GPIO.input(pin)
+
+  if flag != button_state:
+    if button_state:
+      switch_image()
+    flag = button_state
+
+  time.sleep(0.01)
+
 
 window.mainloop()
