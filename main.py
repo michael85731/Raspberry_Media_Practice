@@ -8,7 +8,7 @@ from PIL import Image, ImageTk
 window = Tk()
 label = Label(window)
 raw_image = Image.open("balloon(1).gif")
-index = 0
+index = 1
 image_num = 15
 ratio = 0
 flag = False
@@ -34,8 +34,8 @@ def action():
   global ratio
 
   if index <= image_num:
-    index += 1
     switch_image(index)
+    index += 1
   else:
     label.pack_forget()
     window.update()
