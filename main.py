@@ -61,7 +61,7 @@ def play_video():
 
 # 點兩下螢幕關機
 def shutdown(e):
-  call(["sudo", "shutdown", "now"])
+  call(["shutdown", "-h", "now"])
 
 window.bind("<Double-Button-1>", shutdown)
 action() # 執行第一次
