@@ -41,7 +41,7 @@ def action():
   global index
   global ratio
 
-  if index <= image_num:
+  if index < image_num:
     switch_image(index)
     index += 1
   else:
