@@ -55,7 +55,7 @@ def action():
 # 開啟起始圖片
 def switch_image(index):
   label.image = target_images[index]
-  label.config(image = target_image[index])
+  label.config(image = target_images[index])
   label.pack()
   window.update()
 
