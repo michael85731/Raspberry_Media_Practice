@@ -59,6 +59,11 @@ def switch_image(index):
 def play_video():
   call(["omxplayer", "-o", "local", "qqbz.mp4"])
 
+# 點兩下螢幕關機
+def shutdown(e):
+  call(["sudo", "shutdown", "now"])
+
+window.bind("<Double-Button-1>", shutdown)
 action() # 執行第一次
 
 while True:
