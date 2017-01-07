@@ -20,6 +20,7 @@ GPIO.setup(pin, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
 
 # 設定window & label
 window.configure(background = "black")
+window.configure(cursor = "none")
 window.attributes("-fullscreen", True)
 window.attributes("-topmost", True)
 window.focus_force()
@@ -59,14 +60,15 @@ def switch_image(index):
 def play_video():
   call(["omxplayer", "-o", "local", "qqbz.mp4"])
 
-# 點兩下螢幕關機
+# 點螢幕關機
 def shutdown(e):
   call(["shutdown", "-h", "now"])
 
-window.bind("<Double-Button-1>", shutdown)
+window.bind("<B1-Motion>", shutdown)
 action() # 執行第一次
 
 while True:
+  window.update()
   button_state = GPIO.input(pin)
 
   if flag != button_state:
