@@ -22,7 +22,6 @@ GPIO.setup(pin, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
 window.configure(background = "black")
 window.configure(cursor = "none")
 window.attributes("-fullscreen", True)
-window.attributes("-topmost", True)
 window.focus_force()
 label.config(borderwidth = 0)
 window.update()    # Make sure window will render at this time
@@ -49,7 +48,7 @@ def action():
     label.pack_forget()
     window.update()
     play_video()
-    index = 1
+    index = 0
     action()
 
 # 開啟起始圖片
