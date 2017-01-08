@@ -12,7 +12,7 @@ index = 0
 image_num = 15
 ratio = 0
 button_flag = False
-autio_flag = False
+audio_flag = False
 pin = 12
 
 # 設定GPIO
