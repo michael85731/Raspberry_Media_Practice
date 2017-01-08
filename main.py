@@ -76,11 +76,11 @@ def play_video():
 def change_audio_flag():
   audio.stdin.write("p".encode())
   audio.stdin.flush()
-  audio_flag = !(audio_flag)
+  audio_flag = not(audio_flag)
 
 # 播放pum音效
 def play_pump():
-  if !(audio_flag):
+  if not(audio_flag):
     audio.stdin.write("\x1b[D".encode())
     audio.stdin.flush()
     change_audio_flag()
