@@ -7,7 +7,6 @@ from PIL import Image, ImageTk
 # 設定起始變數
 window = Tk()
 label = Label(window)
-target_images = []
 index = 0
 image_num = 15
 ratio = 0
@@ -27,9 +26,11 @@ label.config(borderwidth = 0)
 window.update()    # Make sure window will render at this time
 
 # 取得等比例縮放的的image scale ratio
+raw_image = Image.open("balloon(1).gif")
 ratio = min( window.winfo_width() / raw_image.size[0], window.winfo_height() / raw_image.size[1])
 
 # 讀取所有圖片
+target_images = []
 for i in range(1, image_num + 1):
   fileName = "balloon(" + str(i) + ").gif"
   raw_image = Image.open(fileName)
