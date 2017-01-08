@@ -46,7 +46,7 @@ def action():
 
   if index < image_num:
     switch_image(index)
-    if index != 0
+    if index != 0:
       play_pump()
     index += 1
   else:
