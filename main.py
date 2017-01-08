@@ -1,4 +1,5 @@
 import time
+import simpleaudio as sa
 import RPi.GPIO as GPIO
 from subprocess import call
 from tkinter import *
