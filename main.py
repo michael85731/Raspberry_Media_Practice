@@ -68,7 +68,7 @@ def play_video():
 
 # 播放pum音效
 def play_pump():
-  audio = subprocess.Popen(["omxplayer", "--loop", "--no-osd", "pump.wav"], stdin = PIPE, bufsize = 1)
+  audio = subprocess.Popen(["omxplayer", "--no-osd", "pump.wav"], stdin = PIPE, bufsize = 1)
 
 # 點螢幕關機
 def shutdown(e):
