@@ -68,7 +68,7 @@ def switch_image(index):
 # 播放影片
 def play_video():
   call(["omxplayer", "-o", "local", "explode.mp4"])
-  call(["omxplayer", "-o", "local", "after.mp4"])
+  call(["omxplayer", "-o", "local", "after.avi"])
 
 # 播放pum音效
 def play_pump():
