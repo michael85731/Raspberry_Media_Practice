@@ -1,7 +1,7 @@
-import time
-import simpleaudio as sa
+import subprocess
 import RPi.GPIO as GPIO
-from subprocess import call
+from subprocess import PIPE
+from time import sleep
 from tkinter import *
 from PIL import Image, ImageTk
 
@@ -11,7 +11,8 @@ label = Label(window)
 index = 0
 image_num = 15
 ratio = 0
-flag = False
+button_flag = False
+autio_flag = False
 pin = 12
 
 # 設定GPIO
@@ -38,10 +39,10 @@ for i in range(1, image_num + 1):
   raw_image = raw_image.resize( (window.winfo_width(), window.winfo_height()), Image.BILINEAR )
   target_images.append(ImageTk.PhotoImage(raw_image))
 
-# 讀取pump音效
-raw_audio = open("pump.wav", "rb")
-raw_audio = raw_audio.read()
-target_audio = sa.WaveObject(raw_audio, 2, 2, 44100)
+# 建立讀取pump音效的process
+audio = subprocess.call(["omxplayer", "--loop", "--no-osd", "pump.wav"], stdin = PIPE, bufsize = 1)
+audio.stdin.write("p".encode())
+audio.stdin.flush()
 
 def action():
   global index
@@ -71,9 +72,28 @@ def play_video():
   call(["omxplayer", "-o", "local", "explode.mp4"])
   call(["omxplayer", "-o", "local", "after.mp4"])
 
+# 變換audio_flag
+def change_audio_flag():
+  audio.stdin.write("p".encode())
+  audio.stdin.flush()
+  audio_flag = !(audio_flag)
+
 # 播放pum音效
 def play_pump():
-  target_audio.play()
+  if !(audio_flag):
+    audio.stdin.write("\x1b[D".encode())
+    audio.stdin.flush()
+    change_audio_flag()
+    sleep(1.2)
+  else:
+    notify_all()
+    change_audio_flag()
+    audio.stdin.write("\x1b[D".encode())
+    audio.stdin.flush()
+    change_audio_flag()
+    sleep(1.2)
+
+  change_audio_flag()
 
 # 點螢幕關機
 def shutdown(e):
@@ -87,10 +107,9 @@ while True:
   window.update()
   button_state = GPIO.input(pin)
 
-  if flag != button_state:
+  if button_flag != button_state:
     if button_state:
       action()
-    flag = button_state
-
+    button_flag = button_state
 
 window.mainloop()
