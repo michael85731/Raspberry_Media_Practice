@@ -12,7 +12,6 @@ index = 0
 image_num = 15
 ratio = 0
 button_flag = False
-audio_flag = False
 pin = 12
 
 # 設定GPIO
@@ -38,11 +37,6 @@ for i in range(1, image_num + 1):
   raw_image = Image.open(fileName)
   raw_image = raw_image.resize( (window.winfo_width(), window.winfo_height()), Image.BILINEAR )
   target_images.append(ImageTk.PhotoImage(raw_image))
-
-# 建立讀取pump音效的process
-audio = subprocess.Popen(["omxplayer", "--loop", "--no-osd", "pump.wav"], stdin = PIPE, bufsize = 1)
-audio.stdin.write("p".encode())
-audio.stdin.flush()
 
 def action():
   global index
@@ -72,31 +66,9 @@ def play_video():
   subprocess.call(["omxplayer", "-o", "local", "explode.mp4"])
   subprocess.call(["omxplayer", "-o", "local", "after.mp4"])
 
-# 變換audio_flag
-def change_audio_flag():
-  global audio_flag
-  audio.stdin.write("p".encode())
-  audio.stdin.flush()
-  audio_flag = not(audio_flag)
-
 # 播放pum音效
 def play_pump():
-  global audio_flag
-
-  if not(audio_flag):
-    audio.stdin.write("\x1b[D".encode())
-    audio.stdin.flush()
-    change_audio_flag()
-    sleep(1.2)
-  else:
-    notify_all()
-    change_audio_flag()
-    audio.stdin.write("\x1b[D".encode())
-    audio.stdin.flush()
-    change_audio_flag()
-    sleep(1.2)
-
-  change_audio_flag()
+  audio = subprocess.Popen(["omxplayer", "--loop", "--no-osd", "pump.wav"], stdin = PIPE, bufsize = 1)
 
 # 點螢幕關機
 def shutdown(e):
