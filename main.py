@@ -40,7 +40,7 @@ for i in range(1, image_num + 1):
   target_images.append(ImageTk.PhotoImage(raw_image))
 
 # 建立讀取pump音效的process
-audio = subprocess.call(["omxplayer", "--loop", "--no-osd", "pump.wav"], stdin = PIPE, bufsize = 1)
+audio = subprocess.Popen(["omxplayer", "--loop", "--no-osd", "pump.wav"], stdin = PIPE, bufsize = 1)
 audio.stdin.write("p".encode())
 audio.stdin.flush()
 
