@@ -80,20 +80,21 @@ def change_audio_flag():
 
 # 播放pum音效
 def play_pump():
-  if not(audio_flag):
-    audio.stdin.write("\x1b[D".encode())
-    audio.stdin.flush()
-    change_audio_flag()
-    sleep(1.2)
-  else:
-    notify_all()
-    change_audio_flag()
-    audio.stdin.write("\x1b[D".encode())
-    audio.stdin.flush()
-    change_audio_flag()
-    sleep(1.2)
+  print("play_pump")
+  #if not(audio_flag):
+    #audio.stdin.write("\x1b[D".encode())
+    #audio.stdin.flush()
+    #change_audio_flag()
+    #sleep(1.2)
+  #else:
+    #notify_all()
+    #change_audio_flag()
+    #audio.stdin.write("\x1b[D".encode())
+    #audio.stdin.flush()
+    #change_audio_flag()
+    #sleep(1.2)
 
-  change_audio_flag()
+  #change_audio_flag()
 
 # 點螢幕關機
 def shutdown(e):
