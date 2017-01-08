@@ -69,8 +69,8 @@ def switch_image(index):
 
 # 播放影片
 def play_video():
-  call(["omxplayer", "-o", "local", "explode.mp4"])
-  call(["omxplayer", "-o", "local", "after.mp4"])
+  subprocess.Popen(["omxplayer", "-o", "local", "explode.mp4"])
+  subprocess.Popen(["omxplayer", "-o", "local", "after.mp4"])
 
 # 變換audio_flag
 def change_audio_flag():
@@ -98,7 +98,7 @@ def play_pump():
 
 # 點螢幕關機
 def shutdown(e):
-  call(["shutdown", "-h", "now"])
+  subprocess.Popen(["shutdown", "-h", "now"])
 
 window.bind("<B1-Motion>", shutdown)
 action() # 執行第一次
