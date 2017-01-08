@@ -74,6 +74,7 @@ def play_video():
 
 # 變換audio_flag
 def change_audio_flag():
+  global audio_flag
   audio.stdin.write("p".encode())
   audio.stdin.flush()
   audio_flag = not(audio_flag)
