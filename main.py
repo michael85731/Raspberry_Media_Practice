@@ -1,5 +1,6 @@
 import subprocess
 import RPi.GPIO as GPIO
+import simpleaudio as sa
 from subprocess import PIPE
 from time import sleep
 from tkinter import *
@@ -38,6 +39,9 @@ for i in range(1, image_num + 1):
   raw_image = raw_image.resize( (window.winfo_width(), window.winfo_height()), Image.BILINEAR )
   target_images.append(ImageTk.PhotoImage(raw_image))
 
+# 讀取pump音效
+pump_audio = sa.WaveObject.from_wave_file("pump.wav")
+
 def action():
   global index
 
@@ -68,7 +72,7 @@ def play_video():
 
 # 播放pum音效
 def play_pump():
-  audio = subprocess.Popen(["omxplayer", "--no-osd", "pump.wav"], stdin = PIPE, bufsize = 1)
+  pump_audio.play()
 
 # 點螢幕關機
 def shutdown(e):
